@@ -18,7 +18,9 @@
       "test:watch": "vitest",
       "test:cov": "vitest run --coverage",
       "test:debug": "vitest --inspect-brk --no-file-parallelism",
+      "pretest:e2e": "docker-compose up -d test-db",
       "test:e2e": "vitest run --config ./vitest.config.e2e.ts",
+      "posttest:e2e": "docker-compose stop test-db && docker-compose rm -f test-db",
       "typeorm": "typeorm-ts-node-esm"
    },
    "dependencies": {

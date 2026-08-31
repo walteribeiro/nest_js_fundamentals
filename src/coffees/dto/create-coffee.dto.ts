@@ -4,11 +4,13 @@ import { ApiProperty } from '@nestjs/swagger';
 export class CreateCoffeeDto {
   @ApiProperty({ description: 'The name of a coffee.' })
   @IsString()
-  readonly title: string;
+  title: string;
+
   @ApiProperty({ description: 'The brand of a coffee.' })
   @IsString()
-  readonly brand: string;
+  brand: string;
+
   @ApiProperty({ description: 'The flavors of a coffee.', type: [String] })
   @IsString({ each: true })
-  readonly flavors: string[];
+  flavors: string[];
 }

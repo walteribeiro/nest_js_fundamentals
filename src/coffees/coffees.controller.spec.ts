@@ -1,9 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { getRepositoryToken } from '@nestjs/typeorm';
 import { CoffeesController } from './coffees.controller.js';
 import { CoffeesService } from './coffees.service.js';
-import { Coffee } from './entities/coffee.entity.js';
-import { Flavor } from './entities/flavor.entity.js';
 
 describe('CoffeesController', () => {
   let controller: CoffeesController;
@@ -11,11 +8,7 @@ describe('CoffeesController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [CoffeesController],
-      providers: [
-        CoffeesService,
-        { provide: getRepositoryToken(Coffee), useValue: {} },
-        { provide: getRepositoryToken(Flavor), useValue: {} },
-      ],
+      providers: [{ provide: CoffeesService, useValue: {} }],
     }).compile();
 
     controller = module.get<CoffeesController>(CoffeesController);
