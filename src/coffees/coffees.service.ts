@@ -13,6 +13,7 @@ import {
   COFFEE_BRANDS_FACTORY,
   COFFEE_BRANDS_FACTORY_PROVIDER,
 } from './coffees.constants.js';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class CoffeesService {
@@ -30,11 +31,13 @@ export class CoffeesService {
     private readonly coffeeBrandsFactoryProvider: string[],
     @Inject(COFFEE_BRANDS_ASYNC)
     private readonly coffeeBrandsAsync: string[],
+    private readonly configService: ConfigService,
   ) {
     console.log(this.coffeeBrands);
     console.log(this.coffeeBrandsFactory);
     console.log(this.coffeeBrandsFactoryProvider);
     console.log(this.coffeeBrandsAsync);
+    console.log(this.configService.get<string>('DATABASE_HOST'));
   }
 
   findAll(paginationQuery: PaginationQueryDto) {
